@@ -1,0 +1,26 @@
+create database heranca_victor
+default character set utf8mb4
+collate utf8mb4_0900_ai_ci;
+use heranca_victor;
+
+create table if not exists usuario(
+    id int auto_increment primary key,
+    email varchar(50),
+    senha varchar(8)
+)character set utf8mb4;
+insert into usuario (email,senha)
+value ('victor@gmail.com','122847'),
+	  ('bruno@gmail.com','123495');
+create table if not exists cliente(
+    nome varchar(50),
+    cpf varchar(11),
+    id_c int primary key,
+    foreign key (id_c) references usuario(id)
+);
+insert into cliente (nome,cpf,id_c)
+value('victor','15742395146',1);
+select*from cliente;
+select*from cliente.nome, cliente.cpf, usuario.email
+from cliente inner join usuario
+on  cliente.id_c = usuario.id;
+
